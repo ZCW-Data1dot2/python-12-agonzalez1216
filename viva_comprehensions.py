@@ -2,6 +2,7 @@ from typing import List, Dict, Set, Callable
 import enum
 
 
+
 class Parity(enum.Enum):
     ODD = 0
     EVEN = 1
@@ -18,7 +19,10 @@ def gen_list(start: int, stop: int, parity: Parity) -> List[int]:
     :param parity:
     :return:
     """
-    pass
+    if parity.name == 'ODD':
+        return [x for x in range(start, stop) if x % 2 == 1]
+    elif parity.name == 'EVEN':
+        return [x for x in range(start,stop) if x % 2 == 0]
 
 
 def gen_dict(start: int, stop: int, strategy: Callable) -> Dict:
@@ -33,7 +37,7 @@ def gen_dict(start: int, stop: int, strategy: Callable) -> Dict:
     :param strategy:
     :return:
     """
-    pass
+    return {i: strategy(i) for i in range(start, stop)}
 
 
 def gen_set(val_in: str) -> Set:
@@ -45,4 +49,6 @@ def gen_set(val_in: str) -> Set:
     :param val_in:
     :return:
     """
-    pass
+    list_1 = list(val_in)
+    return {i.upper() for i in list_1 if i.islower()}
+
